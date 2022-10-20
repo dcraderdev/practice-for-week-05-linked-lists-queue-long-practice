@@ -30,33 +30,54 @@ class SinglyLinkedList {
     }
 
     listLength() {
-        // Returns the length of the list
-        // Implement in O(n) and in O(1) time complexity
+        let length = 0
+        let curr = this.head;
 
-        // Your code here
+        while (curr) {
+            length ++
+            curr = curr.next
+        }
+        return length
     }
 
     sumOfNodes() {
-        // Returns the sum of the values of all the nodes
+        let sum = 0
+        let curr = this.head;
 
-        // Your code here
-
+        while (curr) {
+            sum += curr.value
+            curr = curr.next
+        }
+        return sum
         // Write your hypothesis on the time complexity of this method here
     }
 
     averageValue() {
-        // Returns the average value of all the nodes
+        let sum = 0
+        let length = 0
+        let curr = this.head;
 
-        // Your code here
+        while (curr) {
+            length ++
+            sum += curr.value
+            curr = curr.next
+        }
+        return sum / length
 
         // Write your hypothesis on the time complexity of this method here
     }
 
     findNthNode(n) {
-        // Returns the node at the nth index from the head
+        let length = 0
+        let curr = this.head;
 
-        // Your code here
-
+        while (curr) {
+            length ++
+            curr = curr.next
+         if(length === n){
+            return curr
+         }
+        }
         // Write your hypothesis on the time complexity of this method here
     }
 
@@ -65,7 +86,28 @@ class SinglyLinkedList {
         // Implement this as a singly linked list then as a doubly linked list
             // How do the implementation for singly and doubly vary if at all?
 
-        // Your code here
+            let length = 0
+            let track = 0
+            let mid = length % 2
+            let curr = this.head;
+    
+            while (curr) {
+                length ++
+                curr = curr.next
+             }
+
+             while (curr) {
+                track ++
+                curr = curr.next
+             if(track === mid){
+                return curr
+             }
+            }
+
+
+
+
+            }
 
         // Write your hypothesis on the time complexity of this method here
     }

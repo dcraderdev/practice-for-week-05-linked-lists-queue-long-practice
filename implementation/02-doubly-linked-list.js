@@ -19,61 +19,105 @@ class DoublyLinkedList {
 
         // Add node of val to head of linked list
         let newNode = new DoublyLinkedNode(val);
+        this.length++;
 
-        if (this.length >= 0) {
-            this.head.previous = newNode;
-            newNode.next = this.head;
+
+        if (this.length === 0) {
             this.head = newNode;
+            this.tail = newNode;
+        
         } else {
             this.head = newNode;
             this.tail = newNode;
+
+            this.head.prev = newNode;
+            newNode.next = this.head;
+            this.head = newNode;
+            // this.head.prev = null
+           
         }
 
-        this.length++;
 
         // Write your hypothesis on the time complexity of this method here
     }
 
-    addToTail(val) {
+    addToTail(data) {
+        // There are bugs in this method! Fix them!!!
         // Add node of val to tail of linked list
+        let node = new SinglyLinkedNode(data);
+        
+        if (!this.head) {
+            this.addToHead(data)
+        }
+        else {
+        this.length++
+        let curr = this.head;
 
-        // Your code here
-
+        while (curr.next) {
+            curr = curr.next;
+        }
+        curr.next = node;
+        node.next = null
+        
+    }
+        return this
         // Write your hypothesis on the time complexity of this method here
     }
 
     removeFromHead() {
-        // Remove node at head
-
-        // Your code here
-
-        // Write your hypothesis on the time complexity of this method here
+        let temp = this.head
+        if(this.length === 0) {return undefined}
+        if(this.head){
+            this.head = this.head.next 
+            this.length --
+       }
+       return temp
     }
 
     removeFromTail() {
-        // Remove node at tail
-
-        // Your code here
-
+        if(this.length === 0) {return undefined}
+        if(this.length === 1) {
+            let temp = this.head
+            this.head = null
+            this.length --
+            return temp
+        }
+        else{
+        this.length --
+        let curr = this.head; 
+        let beforeLast;
+        while (curr.next) {
+            beforeLast = curr
+            curr = curr.next;
+        }
+        beforeLast.next = null
+        return curr
+        }
         // Write your hypothesis on the time complexity of this method here
     }
 
     peekAtHead() {
-        // Return value of head node
-
-        // Your code here
-
+        if(this.length === 0) {return undefined}
+        else {
+            return this.head.value
+        }
         // Write your hypothesis on the time complexity of this method here
     }
 
-    peekAtTail() {
-        // Return value of tail node
+    print() {
 
-        // Your code here
+        if(this.length === 0) {return undefined}
 
-        // Write your hypothesis on the time complexity of this method here
+        let current = this.head;
+
+        while (current) {
+            console.log(current.value);
+            current = current.next;
+          }
     }
+        // Write your hypothesis on the time complexity of this method here
 }
+
 
 module.exports = {
     DoublyLinkedList,
