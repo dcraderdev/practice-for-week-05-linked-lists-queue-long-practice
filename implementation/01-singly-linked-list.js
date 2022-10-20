@@ -13,67 +13,115 @@ class SinglyLinkedList {
     }
 
     addToHead(val) {
-        // Add node of val to head of linked list
-
-        // Your code here
-
-        // Write your hypothesis on the time complexity of this method here
+        const node = new SinglyLinkedNode(val)
+        this.length++
+        if (!this.head) {
+            this.head = node
+            node.next = null
+        } else {
+            node.next = this.head
+            this.head = node
+        }
+        return this
     }
 
-    addToTail(val) {
+
+    addToTail(data) {
         // There are bugs in this method! Fix them!!!
-
         // Add node of val to tail of linked list
-        let newNode = new SinglyLinkedNode(data);
-
-        if (!head) {
-            head = newNode;
-            return head;
+        let node = new SinglyLinkedNode(data);
+        
+        if (!this.head) {
+            this.addToHead(data)
         }
+        else {
+        this.length++
+        let curr = this.head;
 
-        let curr = head;
-        while (curr) {
-            curr = current.next;
+        while (curr.next) {
+            curr = curr.next;
         }
-        curr.next = newNode;
-
-        return head;
-
+        curr.next = node;
+        node.next = null
+        
+    }
+        return this
         // Write your hypothesis on the time complexity of this method here
     }
 
     removeFromHead() {
-        // Remove node at head
-
-        // Your code here
-
-        // Write your hypothesis on the time complexity of this method here
+        let temp = this.head
+        if(this.length === 0) {return undefined}
+        if(this.head){
+            this.head = this.head.next 
+            this.length --
+       }
+       return temp
     }
 
     removeFromTail() {
-        // Remove node at tail
-
-        // Your code here
-
+        if(this.length === 0) {return undefined}
+        if(this.length === 1) {
+            let temp = this.head
+            this.head = null
+            this.length --
+            return temp
+        }
+        else{
+        this.length --
+        let curr = this.head; 
+        let beforeLast;
+        while (curr.next) {
+            beforeLast = curr
+            curr = curr.next;
+        }
+        beforeLast.next = null
+        return curr
+        }
         // Write your hypothesis on the time complexity of this method here
     }
 
     peekAtHead() {
-        // Return the value of head node
-
-        // Your code here
-
+        if(this.length === 0) {return undefined}
+        else {
+            return this.head.value
+        }
         // Write your hypothesis on the time complexity of this method here
     }
 
     print() {
-        // Print out the linked list
 
-        // Your code here
+        if(this.length === 0) {return undefined}
 
-        // Write your hypothesis on the time complexity of this method here
+        let current = this.head;
+
+        while (current) {
+            console.log(current.value);
+            current = current.next;
+          }
     }
+        // Write your hypothesis on the time complexity of this method here
 }
+
+let linkedList = new SinglyLinkedList()
+
+linkedList.addToHead('A');
+linkedList.addToTail('B');
+linkedList.addToTail('C');
+
+linkedList.print();
+
+
+
+
+console.log(linkedList);
+
+
+
+
+
+
+
 
 module.exports = {
     SinglyLinkedList,
